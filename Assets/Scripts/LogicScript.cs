@@ -37,7 +37,7 @@ public class LogicScript : MonoBehaviour
         bird.transform.position = new Vector3(-6, 0, 0);
         bird.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         bird.GetComponent<Rigidbody2D>().angularVelocity = 0;
-        bird.transform.rotation = Quaternion.identity;
+        bird.transform.rotation = Quaternion.Euler(0, 0, -21);
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
         foreach(GameObject pipe in pipes) {
             Destroy(pipe);
@@ -46,7 +46,7 @@ public class LogicScript : MonoBehaviour
         scoreText.text = playerScore.ToString();
         gameOverScreen.SetActive(false);
     } 
-
+    
     public void gameOver() {
         gameOverScreen.SetActive(true);
     }   

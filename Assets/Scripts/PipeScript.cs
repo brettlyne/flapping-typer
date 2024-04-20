@@ -5,15 +5,17 @@ using UnityEngine;
 public class PipeMoveScript : MonoBehaviour
 {
     public float speed = 5;
-    float deadX = -16;
+    float deadX = -20;
 
-    // Start is called before the first frame update
+    public TMPro.TextMeshPro typedText;
+    public TMPro.TextMeshPro toTypeText;
+
     void Start()
     {
-        
+        typedText.text = "DI";
+        toTypeText.text = "DIRT";
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += Vector3.left * speed * Time.deltaTime;
