@@ -8,11 +8,11 @@ public class PipeSpawner : MonoBehaviour
     public float spawnRate;
     private float timer = 0;
     public float yOffset;
-    private string[] words;
+    // private string[] words;
 
     void Start()
     {
-        words = System.IO.File.ReadAllLines(Application.dataPath + "/scripts/words.txt");
+        // words = System.IO.File.ReadAllLines(Application.dataPath + "/scripts/words.txt");
         spawnPipe();
     }
 
