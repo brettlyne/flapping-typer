@@ -10,28 +10,41 @@ public class LogicScript : MonoBehaviour
     public int highScore = 0;
     public Text scoreText;
     public Text highScoreText;
-    
+
     public GameObject gameOverScreen;
     public GameObject bird;
     public AudioSource dingSound;
+    public AudioSource buzzSound;
 
     public void Start()
     {
         scoreText.text = playerScore.ToString();
     }
-    public void addScore() {
-        if(bird.GetComponent<BirdScript>().birdIsAlive) {
-            playerScore++;
-            if(playerScore > highScore) {
+    public void addScore(int n)
+    {
+        if (bird.GetComponent<BirdScript>().birdIsAlive)
+        {
+            playerScore += n;
+            if (playerScore > highScore)
+            {
                 highScore = playerScore;
                 highScoreText.text = highScore.ToString();
             }
             scoreText.text = playerScore.ToString();
-            dingSound.Play();
+            if (n > 0)
+            {
+                dingSound.Play();
+            }
+            else
+            {
+                buzzSound.Play();
+            }
+
         }
     }
 
-    public void restartGame() {
+    public void restartGame()
+    {
         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         bird.GetComponent<BirdScript>().birdIsAlive = true;
         bird.transform.position = new Vector3(-6, 0, 0);
@@ -39,15 +52,17 @@ public class LogicScript : MonoBehaviour
         bird.GetComponent<Rigidbody2D>().angularVelocity = 0;
         bird.transform.rotation = Quaternion.Euler(0, 0, -21);
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
-        foreach(GameObject pipe in pipes) {
+        foreach (GameObject pipe in pipes)
+        {
             Destroy(pipe);
         }
         playerScore = 0;
         scoreText.text = playerScore.ToString();
         gameOverScreen.SetActive(false);
-    } 
-    
-    public void gameOver() {
+    }
+
+    public void gameOver()
+    {
         gameOverScreen.SetActive(true);
-    }   
+    }
 }
