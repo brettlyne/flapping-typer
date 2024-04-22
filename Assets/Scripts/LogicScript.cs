@@ -12,7 +12,9 @@ public class LogicScript : MonoBehaviour
     public Text highScoreText;
 
     public GameObject gameOverScreen;
+    public GameObject titleScreen;
     public GameObject bird;
+    public GameObject pipeSpawner;
     public AudioSource dingSound;
     public AudioSource buzzSound;
 
@@ -43,9 +45,15 @@ public class LogicScript : MonoBehaviour
         }
     }
 
+    public void startGame()
+    {
+        titleScreen.SetActive(false);
+        bird.SetActive(true);
+        pipeSpawner.SetActive(true);
+        restartGame();
+    }
     public void restartGame()
     {
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         bird.GetComponent<BirdScript>().birdIsAlive = true;
         bird.transform.position = new Vector3(-6, 0, 0);
         bird.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
