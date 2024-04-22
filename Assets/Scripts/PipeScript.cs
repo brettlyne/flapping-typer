@@ -9,16 +9,15 @@ public class PipeScript : MonoBehaviour
 
     public TMPro.TextMeshPro typedText;
     public TMPro.TextMeshPro toTypeText;
-    private string[] words;
     int letterIndex = 0;
     public bool blocked = true;
+    public WordManager wordManager;
 
     void Start()
     {
-        TextAsset wordList = Resources.Load<TextAsset>("words");
-        words = wordList.text.Split('\n');
+        wordManager = GameObject.FindGameObjectWithTag("WordManager").GetComponent<WordManager>();
         typedText.text = "";
-        toTypeText.text = words[Random.Range(0, words.Length)].ToUpper();
+        toTypeText.text = wordManager.GetRandomWord();
     }
     void Update()
     {
