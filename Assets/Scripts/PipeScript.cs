@@ -15,11 +15,11 @@ public class PipeScript : MonoBehaviour
 
     void Start()
     {
-        words = System.IO.File.ReadAllLines(Application.dataPath + "/scripts/words.txt");
+        TextAsset wordList = Resources.Load<TextAsset>("words");
+        words = wordList.text.Split('\n');
         typedText.text = "";
         toTypeText.text = words[Random.Range(0, words.Length)].ToUpper();
     }
-
     void Update()
     {
         // move the pipe to the left
@@ -29,7 +29,6 @@ public class PipeScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         // check if the player has typed the correct letter
         if (Input.anyKeyDown && blocked)
         {
